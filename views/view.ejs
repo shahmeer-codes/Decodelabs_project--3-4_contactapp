@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Contact</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="form-container">
+        <div class="card profile-card">
+          
+          <div class="profile-avatar">
+            <%= contact.name.charAt(0).toUpperCase() %>
+          </div>
+          <h1 class="profile-name"><%= contact.name %></h1>
+          
+          <div class="profile-details">
+            <div class="detail-row">
+              <span class="detail-label">Email</span>
+              <span class="detail-value"><%= contact.email %></span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Phone</span>
+              <span class="detail-value"><%= contact.phone %></span>
+            </div>
+          </div>
+          
+          <div class="profile-actions">
+            <a href="/edit/<%= contact._id %>" class="btn btn-warning">Edit Contact</a>
+            <a href="/delete/<%= contact._id %>" class="btn btn-danger" onclick="return confirm('Delete this contact?')">Delete</a>
+            <a href="/" class="btn btn-secondary">Back</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

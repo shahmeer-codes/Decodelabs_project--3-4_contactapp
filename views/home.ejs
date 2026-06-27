@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacts Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div>
+      <h1 class="page-title">Contacts</h1>
+      <p class="page-subtitle">Manage your contacts from one clean dashboard.</p>
+    </div>
+    <a href="/addnewcontact" class="btn btn-primary">
+      + Add Contact
+    </a>
+  </header>
+
+  <div class="stats-grid">
+    <div class="card">
+      <p class="stat-label">Total Contacts</p>
+      <h2 class="stat-value"><%= contacts.length %></h2>
+    </div>
+    
+    <div class="card">
+      <p class="stat-label">Rows Per Page</p>
+      <h2 class="stat-value"><%= limit %></h2>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <div class="controls-bar">
+      <input id="searchInput" type="text" placeholder="Search contacts..." class="form-input search-input">
+      <form action="/" method="GET" class="filter-form">
+        <input type="hidden" name="page" value="<%= page %>">
+        <input type="number" name="limit" min="1" value="<%= limit %>" class="form-input filter-input">
+        <button type="submit" class="btn btn-secondary">Apply</button>
+      </form>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th style="text-align: center;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="contactTable">
+          <% contacts.forEach((contact, idx)=>{ %>
+          <tr>
+            <td><%= idx+1 %></td>
+            <td class="fw-medium"><%= contact.name %></td>
+            <td><%= contact.email %></td>
+            <td><%= contact.phone %></td>
+            <td>
+              <div class="actions-cell">
+                <a href="/view/<%= contact._id %>" class="btn btn-info btn-icon">View</a>
+                <a href="/edit/<%= contact._id %>" class="btn btn-warning btn-icon">Edit</a>
+                <a href="/delete/<%= contact._id %>" onclick="return confirm('Delete this contact?')" class="btn btn-danger btn-icon">Delete</a>
+              </div>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <div class="pagination-controls">
+        <% if(hasPrevPage){ %>
+        <a href="/?page=<%= prevPage %>&limit=<%= limit %>" class="btn-page">← Previous</a>
+        <% } else { %>
+        <button disabled class="btn-page">← Previous</button>
+        <% } %>
+
+        <% if(hasNextPage){ %>
+        <a href="/?page=<%= nextPage %>&limit=<%= limit %>" class="btn-page">Next →</a>
+        <% } else { %>
+        <button disabled class="btn-page">Next →</button>
+        <% } %>
+      </div>
+      <p class="pagination-info">Page <strong><%= page %></strong></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const input=document.getElementById('searchInput');
+input.addEventListener('keyup',()=>{
+ const v=input.value.toLowerCase();
+ document.querySelectorAll('#contactTable tr').forEach(r=>{
+   r.style.display=r.innerText.toLowerCase().includes(v)?'':'none';
+ });
+});
+</script>
+</body>
+</html>
