@@ -135,31 +135,6 @@ http://localhost:3000
 * Pagination
 * MongoDB Data Storage
 
----
-
-## 🎯 Internship Tasks Covered
-
-### ✅ Project 3 – Database Integration
-
-* Designed a MongoDB database schema
-* Connected Express.js with MongoDB
-* Implemented CRUD operations
-* Ensured proper data handling
-
-### ✅ Project 4 – Frontend & Backend Integration
-
-* Integrated frontend with backend APIs
-* Displayed dynamic database data
-* Handled requests and responses
-* Connected complete full-stack workflow
-
----
-
-## 🔗 GitHub Repository
-
-https://github.com/shahmeer-codes/Decodelabs_project-3-4-_contactapp
-
----
 
 ## 👨‍💻 Author
 
